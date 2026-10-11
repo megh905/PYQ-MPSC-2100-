@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="mr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#123b72"><link rel="manifest" href="manifest.json">
+<title>MPSC PYQ Free</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f2f5fa;color:#192638;font-family:system-ui,-apple-system,Roboto,Arial,sans-serif}header{background:linear-gradient(120deg,#102b53,#2364b2);color:#fff;padding:22px 16px;border-radius:0 0 22px 22px}header,main{max-width:850px;margin-left:auto;margin-right:auto}h1{font-size:22px;margin:0}header p{margin:5px 0 0;color:#e1ecff;font-size:14px}main{padding:14px}.panel,.card{background:#fff;border:1px solid #dce4ef;border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 3px 12px #12345b08}h2{font-size:18px;margin:0 0 10px}.muted{font-size:13px;color:#65748a}.field{display:block;font-size:14px;font-weight:650;margin:12px 0 5px}input,select,textarea{width:100%;padding:12px;border:1px solid #cbd5e3;border-radius:10px;background:#fff;font:inherit;color:#192638}textarea{min-height:80px}button{border:0;border-radius:10px;background:#2364b2;color:white;padding:12px 14px;font:inherit;font-weight:700;cursor:pointer}button.secondary{background:#e8eff9;color:#123b72}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.hidden{display:none!important}.notice{padding:11px;border-radius:10px;background:#fff4d7;color:#6c5115;font-size:13px;margin:10px 0}.pill{display:inline-block;background:#eaf2ff;color:#174c91;border-radius:99px;padding:5px 9px;font-size:12px;font-weight:700}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{padding:10px;background:#f5f8fc;border-radius:10px}.stat strong{display:block;color:#123b72;font-size:20px}.question{font-size:17px;font-weight:750;line-height:1.5;margin:14px 0}.option{display:block;width:100%;text-align:left;background:#f8faff;color:#192638;border:1px solid #dce4ef;font-weight:500;margin:7px 0}.correct{background:#e8f7ee!important;border-color:#62b383!important}.wrong{background:#fff0f0!important;border-color:#d88181!important}.explain{background:#f5f8fc;border-radius:10px;padding:12px;margin-top:10px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.tabs button{flex:1;min-width:100px}.qitem{padding:10px 0;border-bottom:1px solid #dce4ef}.foot{text-align:center;color:#65748a;font-size:12px;padding:10px}
+@media(max-width:480px){main{padding:10px}.stats{grid-template-columns:repeat(3,1fr)}}
+</style></head><body>
+<header><h1>📘 MPSC PYQ Free</h1><p>विद्यार्थ्यांसाठी मोफत प्रश्न सराव</p></header>
+<main>
+<section id="login" class="panel"><h2>Student Login</h2><p class="muted">Demo खाते तयार करून सराव सुरू करा.</p>
+<div class="notice">ही सुरुवातीची Demo आवृत्ती आहे. सध्या Login आणि प्रश्न या ब्राउझरमध्येच सेव्ह होतात; सुरक्षित ऑनलाइन खाते अजून जोडलेले नाही.</div>
+<label class="field">विद्यार्थ्याचे नाव</label><input id="name" placeholder="उदा. Rahul Patil">
+<label class="field">ईमेल</label><input id="email" type="email" placeholder="you@example.com">
+<label class="field">पासवर्ड</label><input id="password" type="password" placeholder="किमान 6 अक्षरे">
+<button id="loginBtn" style="width:100%;margin-top:12px">Login / खाते तयार करा</button><p id="loginMsg" class="muted"></p></section>
+<section id="app" class="hidden">
+<div class="panel"><div class="row"><div><span class="pill">STUDENT</span><h2 style="margin-top:8px">नमस्कार, <span id="welcome"></span>!</h2><p class="muted">तुमचा सराव सुरू करा.</p></div><button id="logout" class="secondary">Logout</button></div><div class="stats"><div class="stat"><span class="muted">लक्ष्य प्रश्न</span><strong>2,100</strong></div><div class="stat"><span class="muted">Demo प्रश्न</span><strong id="count">6</strong></div><div class="stat"><span class="muted">शुल्क</span><strong>₹0</strong></div></div></div>
+<div class="tabs"><button id="practiceTab">प्रश्न सराव</button><button id="bookmarksTab" class="secondary">Bookmarks</button><button id="adminTab" class="secondary">Admin Panel</button></div>
+<section id="practice">
+<div class="panel"><h2>प्रश्न शोधा</h2><div class="row"><div><label class="field">विषय</label><select id="subject"><option value="all">सर्व विषय</option><option>इतिहास</option><option>भूगोल</option><option>राज्यशास्त्र</option><option>अर्थव्यवस्था</option><option>विज्ञान</option><option>पर्यावरण</option></select></div><div><label class="field">शोध</label><input id="search" placeholder="प्रश्नातील शब्द"></div></div></div>
+<div class="card"><div class="row"><span id="subj" class="pill"></span><span id="meta" class="muted"></span></div><div id="qtext" class="question"></div><div id="opts"></div><div id="feedback"></div><div class="row" style="margin-top:12px"><button id="bookmark" class="secondary">☆ Bookmark</button><button id="next">पुढचा प्रश्न →</button></div></div>
+</section>
+<section id="bookmarks" class="panel hidden"><h2>Bookmarks</h2><div id="saved" class="muted">अजून प्रश्न सेव्ह केलेले नाहीत.</div></section>
+<section id="admin" class="panel hidden"><h2>Admin Panel — Local Demo</h2><div class="notice">हा Demo Admin फक्त या मोबाइलवर प्रश्न जोडतो. PIN हा सुरक्षित प्रवेश नाही; सार्वजनिक वापरासाठी ऑनलाइन database आणि सुरक्षित Admin permissions आवश्यक आहेत.</div>
+<label class="field">Demo PIN</label><input id="pin" type="password" placeholder="2468"><button id="unlock" style="margin-top:8px">Admin Panel उघडा</button><p id="adminMsg" class="muted"></p>
+<div id="form" class="hidden"><label class="field">विषय</label><select id="newSubj"><option>इतिहास</option><option>भूगोल</option><option>राज्यशास्त्र</option><option>अर्थव्यवस्था</option><option>विज्ञान</option><option>पर्यावरण</option></select>
+<label class="field">प्रश्न</label><textarea id="newQ" placeholder="प्रश्न लिहा"></textarea>
+<label class="field">पर्याय A</label><input id="o0"><label class="field">पर्याय B</label><input id="o1"><label class="field">पर्याय C</label><input id="o2"><label class="field">पर्याय D</label><input id="o3">
+<label class="field">योग्य उत्तर</label><select id="ans"><option value="0">A</option><option value="1">B</option><option value="2">C</option><option value="3">D</option></select>
+<label class="field">स्पष्टीकरण</label><textarea id="exp" placeholder="ऐच्छिक"></textarea><button id="add" style="width:100%;margin-top:12px">+ प्रश्न जोडा</button><p id="addMsg" class="muted"></p></div></section>
+</section><div class="foot">MPSC PYQ Free • Demo प्रोटोटाइप • अधिकृत MPSC अॅप नाही</div></main>
+<script>
+const starter=[
+{id:1,s:"इतिहास",q:"छत्रपती शिवाजी महाराजांचा राज्याभिषेक कोणत्या वर्षी झाला?",o:["१६४५","१६७४","१६८०","१६६५"],a:1,e:"राज्याभिषेक रायगडावर ६ जून १६७४ रोजी झाला."},
+{id:2,s:"भूगोल",q:"महाराष्ट्राची राजधानी कोणती आहे?",o:["पुणे","नागपूर","मुंबई","नाशिक"],a:2,e:"मुंबई ही महाराष्ट्राची राजधानी आहे."},
+{id:3,s:"राज्यशास्त्र",q:"भारतीय संविधान कधी लागू झाले?",o:["१५ ऑगस्ट १९४७","२६ जानेवारी १९५०","२६ नोव्हेंबर १९४९","१ मे १९६०"],a:1,e:"भारतीय संविधान २६ जानेवारी १९५० रोजी लागू झाले."},
+{id:4,s:"अर्थव्यवस्था",q:"भारतीय रिझर्व्ह बँकेची स्थापना कोणत्या वर्षी झाली?",o:["१९२०","१९३५","१९४७","१९५०"],a:1,e:"RBI १ एप्रिल १९३५ रोजी कार्यरत झाली."},
+{id:5,s:"विज्ञान",q:"वनस्पती प्रकाशसंश्लेषणासाठी कोणता वायू वापरतात?",o:["ऑक्सिजन","नायट्रोजन","कार्बन डायऑक्साइड","हायड्रोजन"],a:2,e:"वनस्पती प्रकाशसंश्लेषणात कार्बन डायऑक्साइड वापरतात."},
+{id:6,s:"पर्यावरण",q:"ओझोन थर मुख्यतः वातावरणाच्या कोणत्या थरात आढळतो?",o:["क्षोभमंडळ","समतापमंडळ","मध्यमंडळ","तापमंडळ"],a:1,e:"ओझोन थर प्रामुख्याने समतापमंडळात आढळतो."}];
+let qs=JSON.parse(localStorage.getItem("mpscFreeQs")||"null")||starter, pos=0, answered=false, marks=JSON.parse(localStorage.getItem("mpscFreeMarks")||"[]");
+const $=id=>document.getElementById(id);
+function enter(){let name=$("name").value.trim(),email=$("email").value.trim(),pw=$("password").value;if(!email.includes("@")){$("loginMsg").textContent="योग्य ईमेल टाका.";return}if(pw.length<6){$("loginMsg").textContent="पासवर्ड किमान 6 अक्षरांचा असावा.";return}let u={name:name||email.split("@")[0],email};localStorage.setItem("mpscFreeUser",JSON.stringify(u));show(u)}
+function show(u){$("login").classList.add("hidden");$("app").classList.remove("hidden");$("welcome").textContent=u.name;render()}
+function list(){let s=$("subject").value,t=$("search").value.trim().toLowerCase();return qs.filter(q=>(s==="all"||q.s===s)&&(!t||q.q.toLowerCase().includes(t)||q.s.toLowerCase().includes(t)))}
+function render(){let a=list();$("count").textContent=qs.length;if(!a.length){$("qtext").textContent="प्रश्न उपलब्ध नाही."; $("opts").innerHTML="";$("feedback").innerHTML="";return}if(pos>=a.length)pos=0;let q=a[pos];answered=false;$("subj").textContent=q.s;$("meta").textContent="प्रश्न "+(pos+1)+" / "+a.length;$("qtext").textContent=q.q;$("opts").innerHTML="";$("feedback").innerHTML="";q.o.forEach((o,i)=>{let b=document.createElement("button");b.className="option";b.textContent=String.fromCharCode(65+i)+". "+o;b.onclick=()=>answer(i,q);$("opts").append(b)});$("bookmark").textContent=marks.includes(q.id)?"★ Bookmarked":"☆ Bookmark"}
+function answer(i,q){if(answered)return;answered=true;[...$("opts").children].forEach((b,j)=>{b.disabled=true;if(j===q.a)b.classList.add("correct");if(j===i&&i!==q.a)b.classList.add("wrong")});let d=document.createElement("div");d.className="explain";let h=document.createElement("strong");h.textContent=i===q.a?"बरोबर उत्तर!":"योग्य उत्तर: "+q.o[q.a];let p=document.createElement("p");p.textContent=q.e||"स्पष्टीकरण उपलब्ध नाही.";d.append(h,p);$("feedback").append(d)}
+function tab(x){["practice","bookmarks","admin"].forEach(k=>$(k).classList.toggle("hidden",k!==x))}
+$("loginBtn").onclick=enter;$("logout").onclick=()=>{localStorage.removeItem("mpscFreeUser");$("app").classList.add("hidden");$("login").classList.remove("hidden")};
+$("next").onclick=()=>{let a=list();if(a.length){pos=(pos+1)%a.length;render()}};$("subject").onchange=()=>{pos=0;render()};$("search").oninput=()=>{pos=0;render()};
+$("bookmark").onclick=()=>{let a=list();if(!a.length)return;let id=a[pos].id;marks=marks.includes(id)?marks.filter(x=>x!==id):marks.concat(id);localStorage.setItem("mpscFreeMarks",JSON.stringify(marks));render()};
+$("practiceTab").onclick=()=>tab("practice");$("bookmarksTab").onclick=()=>{tab("bookmarks");let a=qs.filter(q=>marks.includes(q.id));$("saved").innerHTML="";if(!a.length){$("saved").textContent="अजून प्रश्न सेव्ह केलेले नाहीत.";return}a.forEach(q=>{let d=document.createElement("div");d.className="qitem";d.textContent=q.s+": "+q.q;$("saved").append(d)})};$("adminTab").onclick=()=>tab("admin");
+$("unlock").onclick=()=>{if($("pin").value==="2468"){$("form").classList.remove("hidden");$("adminMsg").textContent="Demo Panel उघडले."}else $("adminMsg").textContent="PIN चुकीचा आहे."};
+$("add").onclick=()=>{let q=$("newQ").value.trim(),o=[0,1,2,3].map(i=>$("o"+i).value.trim());if(!q||o.some(x=>!x)){$("addMsg").textContent="प्रश्न आणि चारही पर्याय भरा.";return}qs.push({id:Date.now(),s:$("newSubj").value,q,o,a:+$("ans").value,e:$("exp").value.trim()});localStorage.setItem("mpscFreeQs",JSON.stringify(qs));$("addMsg").textContent="प्रश्न या डिव्हाइसवर जोडला.";["newQ","o0","o1","o2","o3","exp"].forEach(id=>$(id).value="");render()};
+try{let u=JSON.parse(localStorage.getItem("mpscFreeUser"));if(u)show(u)}catch(e){}
+if("serviceWorker" in navigator && location.protocol.startsWith("http"))navigator.serviceWorker.register("./sw.js").catch(()=>{});
+</script></body></html>
